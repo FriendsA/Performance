@@ -1,0 +1,1 @@
+{"version":3,"file":"ReportData.d.ts","sourceRoot":"","sources":["../../src/data/ReportData.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,QAAQ,EAAE,MAAM,UAAU,CAAC;AAGjD,cAAM,UAAW,YAAW,WAAW;IACnC,OAAO,CAAC,SAAS,CAAS;gBACd,GAAG,EAAE,MAAM;IAOvB,eAAe,CAAC,KAAK,EAAE,QAAQ,EAAE,IAAI,EAAE,MAAM;CA+BhD;AAED,eAAe,UAAU,CAAC"}
