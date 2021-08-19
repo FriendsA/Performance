@@ -8,9 +8,9 @@ export const WN = window.navigator;
 // 全局的参数数据
 export const store: PerformanceStore = {
     reportData: null,
-    maxMeasureTime: 15000,
     isResourceTiming: false,
     captureError: false,
+    isPerformance: false,
 }
 
 // 标签栏是否隐藏

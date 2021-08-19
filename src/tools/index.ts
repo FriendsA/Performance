@@ -23,6 +23,7 @@ export const validateOptions = (options: PerformanceConfig) => {
     }
 
     store.isResourceTiming = options.isResourceTiming || false;
+    store.isResourceTiming = options.isPerformance || false;
     store.captureError = options.captureError || false;
 }
 
@@ -30,6 +31,7 @@ export const isPerformanceSupporte = () => {
     return WP && !!WP.getEntriesByType && !!WP.now && !!WP.mark;
 }
 
+// 是否支持 PerformanceObserver
 export const isPerformanceObserverSupporte = () => {
     return W && !!W.PerformanceObserver
 }
@@ -52,9 +54,6 @@ const useIdleHandle = (fn: () => any) => {
  */
 export const LogConsole = (duration: number, measureName: string, customProperties?: object) => {
     duration = parseFloat(duration.toFixed(2));
-    if (store.maxMeasureTime && duration <= store.maxMeasureTime) {
-        return;
-    }
     if (duration >= 0) {
         useIdleHandle(() => {
             if (visible.isHidden && !measureName.endsWith("Final") || !store.analyticsTracker) {
@@ -81,7 +80,7 @@ const getDM = () => (WN as any)?.deviceMemory ?? 0;
 /**
  * 处理器多少核
  */
-const getHC = () => WN.hardwareConcurrency ?? 0;
+const getHC = () => (WN as any)?.hardwareConcurrency ?? 0;
 
 /**
  * 是否为低性能设备
@@ -116,6 +115,7 @@ const getNavigatorInfo = (): INavigatorInfo => {
     return {};
 }
 
+// chorme 指标分数
 const fcpScore = [1000, 2500];
 const lcpScore = [2500, 4000];
 const fidcore = [100, 300];
@@ -159,20 +159,17 @@ export const getNavigationTiming = () => {
         if (!pnt) {
             return;
         }
-        const responseStart = pnt.responseStart;
-        const responseEnd = pnt.responseEnd;
         let data = {
-            totalTime: responseEnd - pnt.requestStart,
-            downloadTime: responseEnd - responseStart,
-            timeToFirstByte: responseStart - pnt.requestStart,
-            dnsLookupTime: pnt.domainLookupEnd - pnt.domainLookupStart || 0,
-            tcpTime: pnt.connectEnd - pnt.connectStart || 0,
-            whiteTime: responseStart - pnt.startTime || 0,
-            domTime: pnt.domContentLoadedEventEnd - pnt.startTime || 0,
+            requestTotalTime: pnt.responseEnd - pnt.requestStart,
+            downloadTime: pnt.responseEnd - pnt.responseStart,
+            timeToFirstByte: pnt.responseStart - pnt.startTime || 0,
+            dnsLookupTime: pnt.domainLookupEnd - pnt.domainLookupStart,
+            tcpTime: pnt.connectEnd - pnt.connectStart,
+            domTime: pnt.domContentLoadedEventEnd - pnt.domContentLoadedEventStart,
             loadTime: pnt.loadEventEnd - pnt.startTime || 0,
             parseDOMTime: pnt.domComplete - pnt.domInteractive || 0,
         }
-        LogObjectData("网站指标", data);
+        LogObjectData("Navigation指标", data);
     })
 }
 

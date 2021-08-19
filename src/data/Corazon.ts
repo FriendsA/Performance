@@ -12,14 +12,15 @@ class Corazon {
             const errorTrack = new ErrorTrack();
             errorTrack && errorTrack.run();
         }
-        if (!isPerformanceSupporte()) {
-            // 不支持性能监控API
+        /** 不支持性能监控API 或 不监控 */
+        if (!isPerformanceSupporte() || !options.isPerformance) {
             return;
         }
+        /** observe的指标 */
         if (isPerformanceObserverSupporte()) {
             execPerformance();
         }
-        //标签页隐藏注销监听
+        /** 标签页隐藏注销监听 */
         if (typeof D.hidden !== undefined) {
             D.addEventListener('visibilitychange', () => {
                 if (D.hidden) {
@@ -28,9 +29,9 @@ class Corazon {
                 }
             })
         }
-        // 获取 navigation Timing 网络加载时间,白屏时间，DNS解析等指标
+        /** 获取 navigation指标 */
         getNavigationTiming();
-        // 获取 网络信息
+        /** 获取 网络信息 */
         getNetworkInformation();
     }
 }

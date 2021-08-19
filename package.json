@@ -1,5 +1,5 @@
 {
-  "name": "performance",
+  "name": "corazon",
   "type": "module",
   "source": "src/index.ts",
   "exports": "./dist/corazon.modern.js",

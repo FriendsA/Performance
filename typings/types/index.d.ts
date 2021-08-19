@@ -7,11 +7,11 @@ export interface PerformanceConfig {
     analyticsTracker?: (data: IAnalyticsTrackerOptions) => void;
     isResourceTiming?: boolean;
     captureError?: boolean;
-    maxMeasureTime?: number;
+    isPerformance?: boolean;
 }
 export interface PerformanceStore {
     reportData: ReportData | null;
-    maxMeasureTime?: number;
+    isPerformance?: boolean;
     analyticsTracker?: (data: IAnalyticsTrackerOptions) => void;
     isResourceTiming?: boolean;
     captureError?: boolean;

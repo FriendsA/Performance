@@ -8,13 +8,12 @@ export interface PerformanceConfig {
     analyticsTracker?: (data: IAnalyticsTrackerOptions) => void; // 自定义报告指标的方法
     isResourceTiming?: boolean; // 是否追踪资源加载数据
     captureError?: boolean; // 是否开启错误跟踪
-    maxMeasureTime?: number; // 自定义捕获的最大指标时间
+    isPerformance?: boolean; // 是否开启性能指标监控
 }
 
 export interface PerformanceStore {
-
     reportData: ReportData | null,
-    maxMeasureTime?: number; // 默认15000
+    isPerformance?: boolean; // 是否开启性能指标监控
     analyticsTracker?: (data: IAnalyticsTrackerOptions) => void; //追踪可以执行的方法
     isResourceTiming?: boolean; // 是否追踪资源加载数据
     captureError?: boolean; // 是否开启错误跟踪

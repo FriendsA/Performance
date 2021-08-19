@@ -4,7 +4,7 @@ import { Priority } from '../types/index';
 
 class ErrorTrack {
     constructor() {
-        // TODO 穿参数分类控制
+        // TODO 参数分类控制
         if (!W || !W.addEventListener) {
             throw new Error("不支持错误捕获!");
         }

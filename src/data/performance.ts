@@ -10,11 +10,12 @@ const observeHandle = (eventType: IPerformanceObserverType, callback: (performan
         const perforObserver = new PerformanceObserver((entryList) => {
             callback(entryList.getEntries());
         })
-        perforObserver.observe({ type: eventType, buffered: true });
+        // buffered: A flag to indicate whether buffered entries should be queued into observer's buffer.
+        perforObserver.observe({ type: eventType, buffered: true }); 
         return perforObserver;
     } catch (e) {
         // 报错
-        return null;
+        return e;
     }
 }
 
