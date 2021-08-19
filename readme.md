@@ -1,4 +1,4 @@
-# Corazon #
+# corazontool #
 
 一个集错误监控上报、web性能指标收集的库
 
@@ -32,7 +32,7 @@
 ## 使用方法 ##
 
 ```js
-import Corazon from "corazon";
+import Corazon from "corazontool";
 
 let p = new Corazon({
   logUrl:"", // 错误上报地址,

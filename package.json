@@ -1,6 +1,7 @@
 {
-  "name": "corazon",
+  "name": "corazontool",
   "type": "module",
+  "author": "FriendsA",
   "source": "src/index.ts",
   "exports": "./dist/corazon.modern.js",
   "main": "./dist/corazon.cjs",
@@ -15,6 +16,6 @@
     "microbundle": "^0.13.3",
     "typescript": "^4.3.4"
   },
-  "version": "1.0.0",
+  "version": "0.1.0",
   "license": "MIT"
 }
